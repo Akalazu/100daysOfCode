@@ -53,15 +53,7 @@ const [first, second, , fourth, ...otherNumbers] = [...arr, ...arr2];
 console.log(first, second, fourth, otherNumbers); //rest with arrays
 //output: first = 1, second = 2, fourth = 4, otherNumbers = [5, 10, 15, 20]
 
-const person = {
-  fullName: "John Smith",
-  age: 12,
-  friends: ["Joe", "Stones", "Vincent"],
-  job: "Waiter",
-  orderMenu: function () {
-    console.log(`${this.fullName}! menu was called`);
-  },
-};
+
 const person2 = {
   fullName2: "Adam Williams",
   age2: 20,
@@ -139,3 +131,32 @@ console.log(undefined ?? null); //null
 person.position = 0;
 var randVar = person.position ?? 100;
 console.log(randVar); //0
+
+/*********************** LOGICAL ASSIGNMENT OPERATORS*******************************/
+const person = {
+  fullName: "John Smith",
+  age: 12,
+  friends: ["Joe", "Stones", "Vincent"],
+  job: "Waiter",
+  orderMenu: function () {
+    console.log(`${this.fullName}! menu was called`);
+  },
+};
+person.children = person.children ?? 2;
+console.log(person.children); //2
+person.children = 0;
+person.children ??= 2;
+console.log(person.children); //0
+
+person.gender = person.gender || "male";
+console.log(person.gender); //male
+delete person.gender;
+person.gender ||= "female";
+console.log(person.gender); //female
+
+person.hobby =
+  person.hobby && "[coding, playing video games, solving maths problems]";
+console.log(person.hobby); //undefined
+person.hobby = "watching cartoons";
+person.hobby &&= "[coding, playing video games, solving maths problems]";
+console.log(person.hobby); //[coding, playing video games, solving maths problems]
