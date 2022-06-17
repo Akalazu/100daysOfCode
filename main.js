@@ -12,7 +12,7 @@
 // pastaIngr(...ingredients); //using spread operator as the parameter of a function
 // Note: primitive values are stored in the call stack, reference types are stored in the memory heap
 
-/**************SPREAD OPERATOR*****************/
+/************** DAY 9: SPREAD OPERATOR*****************/
 // const person = {
 //   fullName: "John Smith",
 //   age: 12,
@@ -57,6 +57,10 @@ const person = {
   fullName: "John Smith",
   age: 12,
   friends: ["Joe", "Stones", "Vincent"],
+  job: "Waiter",
+  orderMenu: function () {
+    console.log(`${this.fullName}! menu was called`);
+  },
 };
 const person2 = {
   fullName2: "Adam Williams",
@@ -85,3 +89,53 @@ addNum(5, 6, 7); //output = 18
 addNum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); //output = 55
 const x = [5, 10, 15];
 addNum(...x); //output = 30
+
+/*
+
+ 1. Spread operator is used where values are seperated by commas, while Rest Operator is used where variables are seperated by commas.
+ 
+ 2. Spread is on the RHS of the = , and the Rest is on the LHS of the =
+
+*/
+
+/*********************** DAY 10 : SHORT CIRCUITING[ && , || ] *******************************/
+/*
+  1. The OR operator would always return a truthy value! such as true, " ", string, number etc.
+
+  2. The AND operator would always return a falsy value! such as false, "", null, undefined etc.
+*/
+
+console.log(undefined || true); //true
+console.log(null || undefined); //undefined
+console.log(0 || undefined); //undefined
+console.log(undefined || 0); //0
+console.log("Jonas" || "Jude"); //Jonas
+console.log(false || true); //true
+console.log(3 || " "); //3
+console.log("" || 3); //3
+
+null == true ? console.log("1") : console.log("2"); //2
+if (undefined) {
+  console.log(true);
+} else {
+  console.log(false);
+} //check if undefined is truthy || falsy value[output: false]
+
+person && person.orderMenu();
+console.log(true && false); //false
+console.log("" && false); // ""
+
+var randVar = person.position || 100;
+console.log(randVar);
+
+/*********************** NULLISH COALESCIAN OPERATOR [ ?? ] *******************************/
+
+console.log("david" ?? null); //david
+console.log(null ?? "henry"); //henry
+console.log(null ?? true); //true
+console.log(null ?? false); //false
+console.log(undefined ?? null); //null
+
+person.position = 0;
+var randVar = person.position ?? 100;
+console.log(randVar); //0
