@@ -52,8 +52,15 @@ const arr2 = [5, 10, 15, 20];
 const [first, second, , fourth, ...otherNumbers] = [...arr, ...arr2];
 console.log(first, second, fourth, otherNumbers); //rest with arrays
 //output: first = 1, second = 2, fourth = 4, otherNumbers = [5, 10, 15, 20]
-
-
+const person = {
+  fullName: "John Smith",
+  age: 12,
+  friends: ["Joe", "Stones", "Vincent"],
+  job: "Waiter",
+  orderMenu: function () {
+    console.log(`${this.fullName}! menu was called`);
+  },
+};
 const person2 = {
   fullName2: "Adam Williams",
   age2: 20,
@@ -133,15 +140,7 @@ var randVar = person.position ?? 100;
 console.log(randVar); //0
 
 /*********************** LOGICAL ASSIGNMENT OPERATORS*******************************/
-const person = {
-  fullName: "John Smith",
-  age: 12,
-  friends: ["Joe", "Stones", "Vincent"],
-  job: "Waiter",
-  orderMenu: function () {
-    console.log(`${this.fullName}! menu was called`);
-  },
-};
+
 person.children = person.children ?? 2;
 console.log(person.children); //2
 person.children = 0;
@@ -160,3 +159,85 @@ console.log(person.hobby); //undefined
 person.hobby = "watching cartoons";
 person.hobby &&= "[coding, playing video games, solving maths problems]";
 console.log(person.hobby); //[coding, playing video games, solving maths problems]
+
+/*********************** FOR OF LOOP also the use of Object.entries() *******************************/
+// let personArr = Object.entries(person2);
+// console.log(...personArr);
+
+// const newArr = ["corn", "maize", "beef"];
+// for (const latestArr of newArr.entries()) {
+//   // console.log(latestArr);
+//   console.log(...latestArr);
+// }
+// for (const [key, element] of newArr.entries())
+//   console.log(key + " : " + element);
+
+/*********************** Coding challenge by jonas under data sturctures and modern operators *******************************/
+
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+let [players1, players2] = game.players;
+console.log(players1);
+console.log(players2);
+// console.log(player1.length);
+
+let [gk1, ...fieldPlayers1] = players1;
+let [gk2, ...fieldPlayers2] = players2;
+
+var allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+let players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+console.log(players1Final);
+
+let { team1, x: draw, team2 } = game.odds;
+console.log(team2);
+
+const printGoals = function (...playerNames) {
+  console.log(`Goals scored by: ${playerNames}`);
+  console.log(`They've now scored a total of ${playerNames.length} goals`);
+};
+// printGoals(["Gnarby", "Lewandowski"]);
+printGoals("Gnarby", "Lewandowski", "Hummels");
+
+team1 < team2 && console.log("team 2 is more likely to win");
+team2 < team1 || console.log("team 2 is more likely to win");
