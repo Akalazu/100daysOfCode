@@ -52,22 +52,25 @@ const arr2 = [5, 10, 15, 20];
 const [first, second, , fourth, ...otherNumbers] = [...arr, ...arr2];
 console.log(first, second, fourth, otherNumbers); //rest with arrays
 //output: first = 1, second = 2, fourth = 4, otherNumbers = [5, 10, 15, 20]
+
+let friends = ["Joe", "Stones", "Vincent"];
+let periodOfTheDay = ["morning", "afternoon", "evening"];
 const person = {
   fullName: "John Smith",
   age: 12,
-  friends: ["Joe", "Stones", "Vincent"],
+  friends,
   job: "Waiter",
-  orderMenu: function () {
-    console.log(`${this.fullName}! menu was called`);
+  orderMenu: function (param) {
+    return `Waiter ${this.fullName} was called to bring ${param}`;
   },
 };
 const person2 = {
   fullName2: "Adam Williams",
   age2: 20,
   hobby: {
-    morning: "Jogging",
-    afternoon: "Playing chess",
-    evening: "Playing video games",
+    [periodOfTheDay[0]]: "Jogging",
+    [periodOfTheDay[1]]: "Playing chess",
+    [periodOfTheDay[2]]: "Playing video games",
   },
 };
 
@@ -241,3 +244,52 @@ printGoals("Gnarby", "Lewandowski", "Hummels");
 
 team1 < team2 && console.log("team 2 is more likely to win");
 team2 < team1 || console.log("team 2 is more likely to win");
+
+/*********************** OPTIONAL CHAINING (?.))*******************************/
+console.log(person2.hobbies?.morning);
+
+let ouputCons = person2.hobbies && person2.hobbies.Morning;
+console.log(ouputCons);
+
+let obj = {
+  fName: "Stones",
+  nationality: "American",
+  pet: {
+    type: "dog",
+    name: "busky",
+  },
+  occupation: "bartender",
+  workingHours: {
+    thur: {
+      open: 8,
+      close: 5,
+    },
+    fri: {
+      open: 11,
+      close: 7,
+    },
+    sat: {
+      open: 0,
+      close: 24,
+    },
+  },
+};
+const daysOfTheWeek = [
+  { month: "July" },
+  "mon",
+  "tue",
+  "wed",
+  "thur",
+  "fri",
+  "sat",
+  "sun",
+];
+for (const days of daysOfTheWeek)
+  console.log(obj.workingHours[days]?.open ?? `We don't open on ${days}`);
+
+let temp = obj.pet?.name ?? "Slack";
+console.log(temp);
+
+console.log(daysOfTheWeek[0]?.month ?? "First value of array doesn't exist");
+// person.orderMenu?.() ?? console.log('object');
+console.log(person.orderMenu?.("pasta") ?? "Object");
