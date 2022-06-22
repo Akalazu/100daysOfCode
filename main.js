@@ -55,10 +55,13 @@ console.log(first, second, fourth, otherNumbers); //rest with arrays
 
 let friends = ["Joe", "Stones", "Vincent"];
 let periodOfTheDay = ["morning", "afternoon", "evening"];
+var numb = Symbol("66");
+console.log(typeof numb);
 const person = {
   fullName: "John Smith",
   age: 12,
   friends,
+  [numb]: 404,
   job: "Waiter",
   orderMenu: function (param) {
     return `Waiter ${this.fullName} was called to bring ${param}`;
@@ -275,7 +278,7 @@ let obj = {
   },
 };
 const daysOfTheWeek = [
-  { month: "July" },
+  // { month: "July" },
   "mon",
   "tue",
   "wed",
@@ -293,3 +296,122 @@ console.log(temp);
 console.log(daysOfTheWeek[0]?.month ?? "First value of array doesn't exist");
 // person.orderMenu?.() ?? console.log('object');
 console.log(person.orderMenu?.("pasta") ?? "Object");
+
+/*********************** OBJECT DATA KEYS, VALUES AND ENTRIES*******************************/
+
+//keys
+let keys = Object.keys(person);
+// console.log(keys); [0: "fullName","age","friends", "job", "orderMenu","position", "children", "gender", "hobby"]
+console.log(Object.keys(person).length); //9
+
+//values
+console.log(Object.values(person).length); //9
+
+//entries
+let entries = Object.entries(person);
+console.log(entries); //Turning an array to an Object
+console.log(...entries.entries()); //nested array with index
+for (const [index, [key, value]] of entries.entries())
+  console.log(index, key, value); //looping over an object
+
+console.log(...daysOfTheWeek);
+console.log("mon", "tue", "wed", "thur", "fri", "sat", "sun");
+
+/*********************** SETS*******************************/
+const newSets = new Set(["Pizza", "Pasta", "Pizarro", "pasta", "Pizarro"]);
+newSets.add("Spaghetti");
+newSets.values("pasta");
+newSets.delete("Pizarro");
+newSets.delete("Spaghetti");
+newSets.clear();
+// console.log(newSets);
+
+let staffs = [
+  "Security",
+  "Manager",
+  "Chef",
+  "Secretary",
+  "Waiter",
+  "Security",
+  "Chef",
+];
+
+const allStaff = [...new Set(staffs)];
+console.log(allStaff);
+console.log(new Set("Accommodation"));
+/*********************** UNION OF SETS *******************************/
+function unionFn(a, b) {
+  let unionOfSet = new Set(a);
+  for (const i of b) {
+    unionOfSet.add(i);
+  }
+  return unionOfSet;
+}
+let setA = [1, 2, 2, 2, 3, 4, 5];
+let setB = [6, 7, 8, 9];
+console.log(unionFn(setA, setB)); //{1, 2, 3, 4, 5, 6, 7, 8, 9};
+/*********************** INTERSECTION OF SETS *******************************/
+function intersectionFn(a, b) {
+  let intersection = new Set(a);
+  let intersectionOfSet = new Set();
+  for (const i of b) {
+    if (intersection.has(i)) {
+      intersectionOfSet.add(i);
+    }
+  }
+  return intersectionOfSet;
+}
+setA = [1, 2, 2, 2, 3, 4, 5];
+setB = [2, 5, 6, 7, 8, 9];
+console.log(intersectionFn(setA, setB)); //{2, 5}
+
+/*********************** DIFFERENCE OF SETS *******************************/
+function setDiff(a, b) {
+  let diffOfSet = new Set(a);
+  for (const i of b) {
+    if (diffOfSet.has(i)) {
+      diffOfSet.delete(i);
+    }
+  }
+  return diffOfSet;
+}
+setA = [1, 2, 2, 5, 7, 8];
+setB = [2, 6, 7, 8, 9];
+console.log(setDiff(setA, setB)); //{1, 5}
+
+/*********************** SUBSET OF SETS *******************************/
+function subset(a, b) {
+  let setA = new Set(a);
+  let setB = new Set(b);
+  let subsets = new Set();
+  for (const i of setB) {
+    if (setA.has(i)) {
+      subsets.add(i);
+    }
+  }
+  let final = subsets.size == setB.size ? true : false;
+
+  return final;
+}
+setA = [1, 2, 3, 4, 5];
+setB = [2, 1, 5, 1, 5, 5];
+console.log(subset(setA, setB)); //true
+setA = [1, 2, 3, 4, 5];
+setB = [1, 5, 5, 5, 6];
+console.log(subset(setA, setB)); //false
+// /*********************** MAPS *******************************/
+
+// const myMap = new Map();
+// myMap.set("Name", "John");
+// myMap.set(true, "He is present in class today");
+// myMap.set(false, "He is absent in class today");
+// console.log(myMap.get(true)); //He is present in class today
+// console.log(myMap.has("Name")); //true
+// console.log(typeof myMap); // object
+// myMap.delete("Name");
+// myMap.set("fullname", "Slevester Leon");
+// console.log(myMap);
+
+// const isAbsent = true;
+// console.log(`Report on ${myMap.get("fullname")}: ${myMap.get(isAbsent)}`);
+// //what are iterables? 2. Sets.values()
