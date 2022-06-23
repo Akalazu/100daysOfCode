@@ -399,19 +399,88 @@ console.log(subset(setA, setB)); //true
 setA = [1, 2, 3, 4, 5];
 setB = [1, 5, 5, 5, 6];
 console.log(subset(setA, setB)); //false
-// /*********************** MAPS *******************************/
+/*********************** MAPS *******************************/
 
-// const myMap = new Map();
-// myMap.set("Name", "John");
-// myMap.set(true, "He is present in class today");
-// myMap.set(false, "He is absent in class today");
-// console.log(myMap.get(true)); //He is present in class today
-// console.log(myMap.has("Name")); //true
-// console.log(typeof myMap); // object
-// myMap.delete("Name");
-// myMap.set("fullname", "Slevester Leon");
-// console.log(myMap);
+const myMap = new Map();
+myMap.set("Name", "John");
+myMap.set(true, "He is present in class today");
+myMap.set(false, "He is absent in class today");
+console.log(myMap.get(true)); //He is present in class today
+console.log(myMap.has("Name")); //true
+console.log(typeof myMap); // object
+console.log(myMap.delete("Name"));
+myMap.set("fullname", "Slevester Leon");
 
-// const isAbsent = true;
-// console.log(`Report on ${myMap.get("fullname")}: ${myMap.get(isAbsent)}`);
-// //what are iterables? 2. Sets.values()
+const isAbsent = true;
+console.log(`Report on ${myMap.get("fullname")}: ${myMap.get(isAbsent)}`);
+
+myMap.set(person, "Object");
+myMap.set(daysOfTheWeek, "Array");
+console.log(myMap.keys());
+console.log(myMap.values());
+console.log([...myMap.entries()]);
+
+const question = new Map([
+  ["Question", "Question: What is the best programming Langauge in the world?"],
+  [1, "A: C#"],
+  [2, "B: JavaScript"],
+  [3, "C: Python"],
+  [4, "D: PHP"],
+  ["Answer", 2],
+  [true, `Correct! 👏🎉`],
+  [false, "Wrong, Try Again"],
+]);
+
+console.log(question.get("Question"));
+for (const i of question.keys()) {
+  if (typeof i === "number") {
+    console.log("Option " + question.get(i));
+  }
+}
+let answer = Number(
+  prompt(
+    "Input your option as a Number e.g 1 is for Option A , 3 is for Option C"
+  )
+);
+console.log(answer);
+console.log(`${question.get(answer === question.get("Answer"))}`);
+
+// /*********************** Coding Challenge 3 *******************************/
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow Card"],
+  [69, "🟥 Red Card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "🔶 Yellow Card"],
+]);
+
+const eventTime = [...gameEvents.keys()].pop();
+console.log(eventTime); //92
+let events = new Set();
+for (const [, value] of gameEvents) {
+  events.add(value);
+}
+console.log(events); //Created an array 'events' of the different game events that happened (no duplicates)
+
+gameEvents.delete(64); //After the game has finished, is was found that the yellow card from minute 64 was unfair. so i remove this event from the game events log.
+console.log(gameEvents);
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+); //Print the following string to the console: "An event happened, on average, every 9 minutes"
+console.log(
+  `An event happened, on average, every ${eventTime / gameEvents.size} minutes`
+); //Print the following string to the console: "An event happened, on average, every 9 minutes"
+for (const [key, value] of gameEvents) {
+  const stats =
+    key < 45
+      ? `[FIRST HALF] ${key}: ${value}`
+      : `[SECOND HALF] ${key}: ${value}`;
+  console.log(stats);
+} //Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game.
+//what are iterables? 2. Sets.values()
