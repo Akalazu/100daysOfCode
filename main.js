@@ -437,13 +437,13 @@ for (const i of question.keys()) {
     console.log("Option " + question.get(i));
   }
 }
-let answer = Number(
-  prompt(
-    "Input your option as a Number e.g 1 is for Option A , 3 is for Option C"
-  )
-);
-console.log(answer);
-console.log(`${question.get(answer === question.get("Answer"))}`);
+// let answer = Number(
+//   prompt(
+//     "Input your option as a Number e.g 1 is for Option A , 3 is for Option C"
+//   )
+// );
+// console.log(answer);
+// console.log(`${question.get(answer === question.get("Answer"))}`);
 
 // /*********************** Coding Challenge 3 *******************************/
 const gameEvents = new Map([
@@ -484,3 +484,114 @@ for (const [key, value] of gameEvents) {
   console.log(stats);
 } //Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game.
 //what are iterables? 2. Sets.values()
+
+var str = "David Akalazu";
+console.log(str.charAt(3));
+console.log(str.concat(" Akalazu"));
+console.log(str.length);
+console.log(str.indexOf(" "));
+console.log(str.lastIndexOf("a"));
+console.log(str.split());
+console.log(str.slice(0, str.lastIndexOf(" ")));
+console.log(str.slice(str.lastIndexOf(" ") + 1));
+console.log(str.includes("David"));
+
+// let studentCode = prompt("Input your student code").toUpperCase();
+// //SAFM
+// let studMap = new Map([
+//   ["SAF", "You are a WAEC student"],
+//   ["SAG", "You are a JAMB student"],
+// ]);
+// // console.log(studMap.key("SAF"));
+// let morn = "M";
+// let eve = "E";
+// // console.log(studentCode.slice(0, 4));
+// let codes = [...studMap.keys()];
+// console.log(codes);
+// var result =
+//   studentCode.slice(0, 3) === codes[0] && studentCode.charAt(3) === morn
+//     ? `${studMap.get("SAF")} who registered for morning classes`
+//     : `${studMap.get("SAG")} who registered for morning classes`;
+// var result2 =
+//   studentCode.slice(0, 3) === codes[1] && studentCode.charAt(3) === eve
+//     ? `${studMap.get("SAG")} who registered for evening classes`
+//     : `${studMap.get("SAF")} who registered for evening classes`;
+
+// // }
+// studentCode.charAt(3) === morn && console.log(result);
+// studentCode.charAt(3) === eve && console.log(result2);
+
+console.log("Mason Greenwood".padStart(20, "*"));
+
+// /*********************** Mask Number *******************************/
+function starNumb(value) {
+  let realNumb = String(value);
+  return realNumb.slice(-4).padStart(realNumb.length, "*");
+}
+console.log(starNumb(456782863719201));
+console.log(starNumb("0552572247"));
+
+// /*********************** Mask Email *******************************/
+//shows the first two letters of your email and 'stars' the rest till it gets to the '@'
+// let userInput = prompt("Kindly Input your email");
+function starMail(mail) {
+  let realMail = mail.slice(0, mail.indexOf("@"));
+  return (
+    mail.slice(0, 2).padEnd(realMail.length, "*") +
+    mail.slice(mail.lastIndexOf("@"))
+  );
+}
+console.log(starMail("nicholasinnocent@gmail.com")); //ni**************@gmail.com
+console.log(starMail("leonardogodfrey035@outlook.com")); //le****************@outlook.com
+// console.log(starMail("akalazu@yahoo.com"));
+
+console.log("lor:em:Ipsum".split(/::?/));
+console.log("object".toUpperCase());
+
+// /*********************** Capitalization Function *******************************/
+// let userInput = prompt("What is your name?");
+// capitalize(userInput);
+function capitalize(str) {
+  str = str.toLowerCase();
+  let realStr = str.split(" ");
+  // console.log(realStr);
+  let strUpper = [];
+  for (const i of realStr) {
+    strUpper.push(i[0].toUpperCase() + i.slice(1));
+  }
+  console.log(strUpper.join(" "));
+}
+capitalize("Abraham mason");
+capitalize("Oluwasegun Ladipo kevin smiTH jONAs nelson");
+capitalize("okebaram precious");
+
+// /*********************** Coding Challenge 4 *******************************/
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+let userText = document.querySelector("textarea");
+const userBtn = document.querySelector("button");
+userBtn.innerHTML = "Submit";
+userBtn.style.fontSize = "3em";
+userBtn.style.border = "traansparent";
+
+userBtn.addEventListener("click", function () {
+  let userTextVal = userText.value;
+  let userTextValArr = userTextVal.split("\n");
+  let counter = 0;
+  for (let i of userTextValArr) {
+    counter++;
+    i = i.toLowerCase();
+    var camelCaseStr =
+      i.slice(0, i.indexOf("_")).replace("_", " ") +
+      i.slice(i.indexOf("_") + 1, i.indexOf("_") + 2).toUpperCase() +
+      i.slice(i.indexOf("_") + 2);
+    console.log(`${camelCaseStr} ${"✅".repeat(counter)}`);
+  }
+});
+/* 
+court_case ==> courtCase ✅
+first_name ==> firstName ✅✅
+self_Taught ==> someVariable ✅✅✅
+Calculate_AGE ==> calculateAge ✅✅✅✅
+server_SPIT ==> serverSpit ✅✅✅✅✅
+ */
