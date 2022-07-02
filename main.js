@@ -566,28 +566,28 @@ capitalize("Oluwasegun Ladipo kevin smiTH jONAs nelson");
 capitalize("okebaram precious");
 
 // /*********************** Coding Challenge 4 *******************************/
-document.body.append(document.createElement("textarea"));
-document.body.append(document.createElement("button"));
-let userText = document.querySelector("textarea");
-const userBtn = document.querySelector("button");
-userBtn.innerHTML = "Submit";
-userBtn.style.fontSize = "3em";
-userBtn.style.border = "traansparent";
+// document.body.append(document.createElement("textarea"));
+// document.body.append(document.createElement("button"));
+// let userText = document.querySelector("textarea");
+// const userBtn = document.querySelector("button");
+// userBtn.innerHTML = "Submit";
+// userBtn.style.fontSize = "3em";
+// userBtn.style.border = "transparent";
 
-userBtn.addEventListener("click", function () {
-  let userTextVal = userText.value;
-  let userTextValArr = userTextVal.split("\n");
-  let counter = 0;
-  for (let i of userTextValArr) {
-    counter++;
-    i = i.toLowerCase();
-    var camelCaseStr =
-      i.slice(0, i.indexOf("_")).replace("_", " ") +
-      i.slice(i.indexOf("_") + 1, i.indexOf("_") + 2).toUpperCase() +
-      i.slice(i.indexOf("_") + 2);
-    console.log(`${camelCaseStr} ${"✅".repeat(counter)}`);
-  }
-});
+// userBtn.addEventListener("click", function () {
+//   let userTextVal = userText.value;
+//   let userTextValArr = userTextVal.split("\n");
+//   let counter = 0;
+//   for (let i of userTextValArr) {
+//     counter++;
+//     i = i.toLowerCase();
+//     var camelCaseStr =
+//       i.slice(0, i.indexOf("_")).replace("_", " ") +
+//       i.slice(i.indexOf("_") + 1, i.indexOf("_") + 2).toUpperCase() +
+//       i.slice(i.indexOf("_") + 2);
+//     console.log(`${camelCaseStr.padEnd(20)} ${"✅".repeat(counter)}`);
+//   }
+// });
 /* 
 court_case ==> courtCase ✅
 first_name ==> firstName ✅✅
@@ -595,3 +595,418 @@ self_Taught ==> someVariable ✅✅✅
 Calculate_AGE ==> calculateAge ✅✅✅✅
 server_SPIT ==> serverSpit ✅✅✅✅✅
  */
+
+const flights =
+  "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+const getCode = (str) => {
+  return str.slice(0, 3).toUpperCase();
+};
+for (const i of flights.split("+")) {
+  let [status, from, to, time] = i.split(";");
+  let result = `${
+    status.startsWith("_Delayed") ? "🔴" : ""
+  } ${status.replaceAll("_", " ")} ${getCode(from)} ${getCode(
+    to
+  )} (${time.replace(":", "h")})`.padStart(55);
+  console.log(result);
+}
+/*********************** A closer Look at Functions: Setting Default Parameters *******************************/
+
+let orderMeal = function (
+  swallow,
+  soup = "Egusi",
+  addExtra = false,
+  numbOfMeat = 1,
+  price = 400 + numbOfMeat * 100
+) {
+  // ES5 way of setting default parameters
+  // soup = soup || "Egusi";
+  // addExtra = addExtra || true;
+  const order = {
+    swallow,
+    soup,
+    addExtra,
+    numbOfMeat,
+    price,
+  };
+  console.log(order);
+};
+
+orderMeal("Eba", "Oha and Vegetable", true, 4);
+
+const david = {
+  name: "Akalazu Udo",
+  age: 18,
+};
+
+const udo = david;
+udo.age = 24;
+console.log(udo, david);
+
+let strr = "I am a dummy";
+
+let newStrr = strr;
+
+strr = "i am not a dummy";
+console.log(strr, newStrr);
+
+/*********************** Accepting Callback functions *******************************/
+let oneWord = function (word) {
+  return word.replace(/ /g, "").toLowerCase();
+};
+let firstUpper = function (str) {
+  let [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
+};
+const transformStr = function (str, fn) {
+  console.log(`This is the transformed string: ${fn(str)}`);
+  console.log(`Transformed by: ${fn.name}`);
+}; //transformStr is a high order function
+
+transformStr("Jesus is my all in all", firstUpper);
+transformStr("Jesus is my all in all", oneWord);
+
+//abstraction in JS, functions that return functions
+
+const greet = function (str) {
+  return function (name) {
+    console.log(`${name} is greeting ${str}`);
+  };
+};
+greet("Good Morning")("Jonas");
+
+const greet2 = (greet) => (name) => console.log(`${name} is greeting ${greet}`);
+
+greet2("Hey")("Jude");
+
+/*********************** Call, Apply and Bind *******************************/
+const bekview = {
+  flightName: "Bekview Flights",
+  flightCode: "BK",
+  bookings: [],
+  book(flightNum, passName) {
+    console.log(
+      `${passName} just booked a seat on ${this.flightName} with flight number ${this.flightCode}${flightNum}`
+    );
+    this.bookings.push(flightNum, passName);
+  },
+};
+
+const airwick = {
+  flightName: "Airwick Airs",
+  flightCode: "AA",
+  bookings: [],
+};
+
+let book = bekview.book;
+book.call(bekview, 12, "Zed");
+bekview.book(123, "Serena Williams");
+bekview.book(453, "Sarah serverSpit");
+book.call(airwick, 190, "Jude Ashley");
+console.log(bekview);
+console.log(airwick);
+
+// var name = "Global Ride";
+const firstCar = {
+  name: "Toyota Camry 2020 Model",
+  isFaulty: false,
+  switchOn() {
+    console.log(`${this.name} is switching on`);
+  },
+  switchOff() {
+    console.log(`${this.name} is switching off`);
+  },
+};
+
+const secondCar = {
+  name: "Mercedes Benz",
+  isFaulty: false,
+};
+
+let switchOff = firstCar.switchOff;
+let switchOn = firstCar.switchOn;
+switchOff.call(secondCar);
+switchOn.call(secondCar);
+
+let randArr = [1, 2, 3];
+
+let sample = bekview.book.bind(airwick);
+// sample(113, "Adam Smith");
+// sample(891, "Joe Biden");
+const swiss = {
+  flightName: "Swiss Airs",
+  flightCode: "SS",
+  bookings: [],
+};
+let sample2 = bekview.book.bind(swiss, 777);
+
+sample2("Allegra");
+
+function calcTax(rate, value) {
+  console.log(rate * value + value);
+}
+let tax = calcTax.bind(null, 0.25);
+tax(100);
+
+let calcTaxes = (rate, value) => rate * value + value;
+let finalTaxes = calcTaxes.bind(null, 0.5);
+console.log(calcTaxes(0.5, 100));
+console.log(finalTaxes(100));
+console.log(finalTaxes(190));
+
+const taxRate = function (rate) {
+  return (value) => rate * value + value;
+};
+
+var randVatt = taxRate(0.5);
+console.log(randVatt(100));
+// console.log(taxRate(100));
+// console.log(randVatt);
+
+/*********************** Coding Challenge 1*******************************/
+
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+//   // This generates [0, 0, 0, 0]. More in the next section 😃
+//   answers: new Array(4).fill(0),
+//   displayResults(type = "Array") {
+//     if (type === "Array") {
+//       console.log(this.answers);
+//     } else if (type === "string") {
+//       console.log("Current poll results are: " + this.answers.join(" "));
+//     }
+//   },
+//   registerNewAnswer() {
+//     let inputVal = Number(
+//       prompt(`${this.question}\n ${this.options.join("\n")}`)
+//     );
+//     if (inputVal < this.options.length) {
+//       this.answers[inputVal] += 1;
+//       let displayResult = this.displayResults.bind(poll.registerNewAnswer);
+//       this.displayResults("string");
+//     } else {
+//       alert("Wrong Input ❌");
+//     }
+//   },
+// };
+// // poll.registerNewAnswer();
+
+//voting casting system
+// const poll = {
+//   title: "Who do you vote for as president?",
+//   options: [
+//     "1: Atiku Abubakar",
+//     "2: Ahmed Tinubu",
+//     "3: Peter Obi",
+//     "4: Ike Ekweremadu",
+//   ], //[1: Atiku Abubakar - 1, 2: Ahmed Tinubu - 0,3: Peter Obi"- 0, 4: Ike Ekweremadu" - 0]
+//   results: new Array(4).fill(0),
+//   castVote() {
+//     const cast = Number(prompt(`${this.title} \n ${this.options.join("\n")}`));
+//     if (cast <= this.results.length) {
+//       console.log(this.options[cast - 1]);
+//       this.results[cast - 1]++;
+//     } else {
+//       alert("Wrong Input ❌");
+//     }
+//     this.displayResults();
+//   },
+//   displayResults() {
+//     for (let i = 0; i < this.results.length; i++) {
+//       // console.log(this.options[i], this.results[i]);
+//       let lol = this.results[i] < 2 ? "vote" : "votes";
+//       let finResult = `${this.options[i]} has ${this.results[i]} ${lol}`;
+//       console.log(finResult);
+//     }
+//     // console.log(this.results);
+//   },
+// };
+// let register = poll.castVote;
+// let pollBtn = document.querySelector(".answer-poll");
+
+// pollBtn.addEventListener("click", register.bind(poll));
+
+//function that creates a sayName method in an object
+const mixName = function (obj) {
+  obj.sayName = function () {
+    console.log(this.name);
+  };
+};
+const me = {
+  name: "Tyler",
+  age: 12,
+};
+me.sayName = function () {
+  console.log(this.name);
+};
+me.sayName();
+console.log(me);
+
+//function that returns an object
+const newSoul = function (name, gender, isAlive) {
+  return {
+    name: name,
+    gender: gender,
+    isAlive: isAlive,
+  };
+};
+console.log(newSoul("Stacey", "Female", false));
+
+/*********************** Closures and self invoking functions *******************************/
+//IIFE(Immediately Invoking Function Expression) was invented for data privacy
+(function (a, b) {
+  console.log("this is a self invoking function", a + b);
+  return a + b;
+})(5, 9);
+
+var counter = function () {
+  let currentCount = 1;
+
+  return function () {
+    currentCount++;
+    console.log(currentCount);
+  };
+};
+let count = counter();
+count();
+count();
+console.dir(count);
+
+function greeting() {
+  let message = "hey there!";
+
+  return function sayHi() {
+    console.log(message);
+  };
+}
+let hi = greeting();
+hi();
+
+//CASE 1
+// for (var index = 1; index <= 3; index++) {
+//   setTimeout(function () {
+//     console.log("after " + index + " second(s) " + index);
+//   }, index * 1000); //Output: after 4 second(s) 4 [3times]
+// }
+// //CASE 2
+// for (let index = 1; index <= 3; index++) {
+//   setTimeout(function () {
+//     console.dir(index);
+//     console.log("after " + index + " second(s) " + index);
+//   }, index * 1000);
+// } //Output: after 1 second(s) 1, after 2 second(s) 2, after 3 second(s) 3
+
+// let call2 = "para";
+// function callPara(para) {
+//   var call = para;
+//   var call = "Last Str";
+//   let call2 = "Lastest Str";
+//   console.log(call, call2);
+// }
+
+/*********************** Variable initializaion & declaration, use of let, const and var *******************************/
+
+var input; //variable declaration
+let input2;
+// input2 = 4; //variable initialization
+console.log(input, input2);
+
+function sayMyName(name) {
+  let myName = name;
+  if (myName.length < 20) {
+    var report = "Name is eligible";
+    console.log(report);
+  } else {
+    report = "Name is not eligible";
+    console.log(report);
+  }
+}
+sayMyName("Akimbo lawrence oluwasegun tohib"); // when report is declared with a "var" this codes run without but if declared with "let or const" it'll give errors cos they're block scoped and not function scoped. OUTPUT: "Name is not eligible";
+
+// let a;
+// a =4;
+// console.log(a);
+
+// a = 5;
+// console.log(a);
+// var a;
+/*********************** Learning Math Object and its methods *******************************/
+
+console.log(Math.PI);
+console.log(Math.sign(Math.PI));
+console.log(Math.sign(Math.E));
+console.log(Math.abs(-Math.PI));
+console.log(Math.sqrt(64));
+console.log(Math.sqrt(81));
+console.log(Math.pow(4, 3));
+console.log(Math.max(...[3, 2, 5, 55]));
+console.log(Math.min(...[3, 2, 5, 55]));
+console.log(Math.round(4.5333));
+console.log(Math.round(6.46));
+console.log(Math.ceil(3.1));
+console.log(Math.ceil(6.0001));
+console.log(Math.floor(4.0));
+console.log(Math.trunc(12.11));
+console.log(Math.trunc(1.0));
+console.log(Math.sin((Math.PI / 180) * 60));
+console.log((Math.atan2(0, -1) * 180) / Math.PI);
+
+/*********************** Learning Date Object and its methods *******************************/
+let d;
+
+d = new Date();
+console.log(d.getFullYear());
+console.log(d.getMonth());
+
+/*********************** Array methods *******************************/
+
+const items = [
+  {
+    name: "Bike",
+    price: 100,
+  },
+  {
+    name: "Biscuit",
+    price: 70,
+  },
+  {
+    name: "Laptop",
+    price: 1200,
+  },
+  {
+    name: "Bread",
+    price: 450,
+  },
+];
+
+let filteredItem = items.filter((item) => {
+  return item.price < 100;
+});
+console.log(filteredItem);
+
+let mappedItem = items.map((item) => {
+  return item.name;
+});
+
+console.log(mappedItem);
+
+let findItem = items.find((item) => {
+  return item.price === 70;
+});
+
+console.log(findItem);
+
+let foreachItem = items.forEach((item) => {
+  console.log(item.name, item.price);
+});
+
+let isExpensive = items.every((item) => {
+  return item.price < 200;
+});
+console.log(isExpensive);
