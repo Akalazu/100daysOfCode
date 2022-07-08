@@ -984,10 +984,10 @@ const items = [
     price: 450,
   },
 ];
-
 let filteredItem = items.filter((item) => {
   return item.price < 100;
 });
+
 console.log(filteredItem);
 
 let mappedItem = items.map((item) => {
@@ -1010,3 +1010,47 @@ let isExpensive = items.every((item) => {
   return item.price < 200;
 });
 console.log(isExpensive);
+var ordArr = ["a", "b", "c", "d", "e", "f"];
+
+console.log(ordArr.splice(1, 3));
+console.log(ordArr.splice());
+console.log(ordArr);
+console.log(ordArr.at(0));
+
+ordArr.forEach((arr, index, theArr) => {
+  console.log(arr, index, theArr);
+});
+
+var arrSet = new Set(["Smith", "Walker", "Stones", "Smith"]);
+
+arrSet.forEach((arr) => {
+  console.log(arr);
+});
+
+var arrMap = new Map();
+arrMap.set("Walker", "First Name");
+arrMap.set("Judith", "Second Name");
+console.log(arrMap.values());
+console.log(arrMap.keys());
+
+console.log(arrMap);
+arrMap.forEach((maps, key, map) => {
+  console.log(maps, " ", key, map);
+});
+/*********************** Learning map methods of arrays *******************************/
+
+var randNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var numCheck = randNumbers.map(function (n, index) {
+  let result = n % 2 == 0 ? "even" : "odd";
+  return `At number ${index + 1} the number is ${result}`;
+});
+console.log(numCheck);
+
+var transactions = [600, 400, -1200, 430, 1500, -900];
+
+var transacReport = transactions.map((transaction, index) => {
+  return `Your ${
+    index + 1 > 3 ? index + 1 + "th" : index + 1
+  } transaction of the day is ${transaction > 0 ? "deposit" : "withdrawal"}`;
+});
+console.log(transacReport);
