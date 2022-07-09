@@ -1037,20 +1037,64 @@ console.log(arrMap);
 arrMap.forEach((maps, key, map) => {
   console.log(maps, " ", key, map);
 });
-/*********************** Learning map methods of arrays *******************************/
+/*********************** Learning map method of arrays *******************************/
 
 var randNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-var numCheck = randNumbers.map(function (n, index) {
-  let result = n % 2 == 0 ? "even" : "odd";
-  return `At number ${index + 1} the number is ${result}`;
-});
-console.log(numCheck);
+// var numCheck = randNumbers.map(function (n, index) {
+//   let result = n % 2 == 0 ? "even" : "odd";
+//   return `At number ${index + 1} the number is ${result}`;
+// });
+// console.log(numCheck);
 
 var transactions = [600, 400, -1200, 430, 1500, -900];
 
-var transacReport = transactions.map((transaction, index) => {
-  return `Your ${
-    index + 1 > 3 ? index + 1 + "th" : index + 1
-  } transaction of the day is ${transaction > 0 ? "deposit" : "withdrawal"}`;
+// var transacReport = transactions.map((transaction, index) => {
+//   return `Your ${
+//     index + 1 > 3 ? index + 1 + "th" : index + 1
+//   } transaction of the day is ${transaction > 0 ? "deposit" : "withdrawal"}`;
+// });
+// console.log(transacReport);
+
+/*********************** Learning filter method of arrays *******************************/
+const filterTrans = transactions.filter((trans, index) => {
+  console.log(index);
+  return trans > 400;
 });
-console.log(transacReport);
+console.log(filterTrans);
+var withdrawals = transactions.filter((trans) => trans < 0);
+console.log(withdrawals);
+
+/*********************** Learning reduce method of arrays *******************************/
+var balance = transactions.reduce((acc, curr, index) => {
+  console.log(
+    `At iteration ${index} the currentCount is ${acc} with the currentValue being ${curr}`
+  );
+  return curr + acc;
+}, 0);
+console.log(balance);
+// var transactions = [600, 400, -1200, 430, 1500, -900];
+
+// let sum = 0;
+// for (const trans of transactions) sum += trans;
+// console.log(sum); //tried to achieve the same result as above using for of Loop and i did it!🥳
+let maxTrans = transactions.reduce(
+  (acc, curr) => (curr > acc ? curr : acc),
+  transactions[0]
+);
+console.log(maxTrans); //getting max transaction results using reduce
+
+/*********************** Coding Challenge #2 *******************************/
+var testDataI = [5, 2, 4, 1, 15, 8, 3];
+var testDataII = [16, 6, 10, 5, 6, 1, 4];
+
+function testDogAge(arr) {
+  let filterDogAge = arr
+    .map((dogAge) => (dogAge < 3 ? dogAge * 2 : dogAge * 4 + 16))
+    .filter((age) => age > 17);
+  console.log(filterDogAge);
+  let convertDogAge = filterDogAge.reduce((acc, curr) => acc + curr, 0);
+  return convertDogAge / filterDogAge.length;
+}
+
+console.log(testDogAge(testDataI));
+console.log(testDogAge(testDataII));
