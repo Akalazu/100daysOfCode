@@ -44,13 +44,13 @@
 
 /**************REST OPERATOR[opposite of spread operator]*****************/
 // 1. Rest with destructuring
-const arr = [1, 2, ...[3, 4]];
-console.log(arr);
+// const arr = [1, 2, ...[3, 4]];
+// console.log(arr);
 
 const arr2 = [5, 10, 15, 20];
 
-const [first, second, , fourth, ...otherNumbers] = [...arr, ...arr2];
-console.log(first, second, fourth, otherNumbers); //rest with arrays
+// const [first, second, , fourth, ...otherNumbers] = [...arr, ...arr2];
+// console.log(first, second, fourth, otherNumbers); //rest with arrays
 //output: first = 1, second = 2, fourth = 4, otherNumbers = [5, 10, 15, 20]
 
 let friends = ["Joe", "Stones", "Vincent"];
@@ -1098,3 +1098,54 @@ function testDogAge(arr) {
 
 console.log(testDogAge(testDataI));
 console.log(testDogAge(testDataII));
+// 08039607746, 07086111162, 090 80383508
+
+var newArr = [1, 2, 3, 4, 5];
+console.log(newArr.findIndex((arr) => arr === 5));
+
+/*********************** Flat and FlatMap *******************************/
+
+var deepArr = [[1, 2, 3], [4, 5, 6], 7, 8, [9]];
+console.log(deepArr.flat());
+
+var hugeArr = [testDataI, testDataII];
+const overallFigure = hugeArr.flat().reduce((acc, curr) => acc + curr, 0);
+console.log(overallFigure);
+
+/*********************** Sorting Arrays *******************************/
+
+var myGees = ["Divine", "Purity", "Victory", "Kachi"];
+
+console.log(myGees);
+console.log(myGees.sort());
+console.log(myGees);
+
+var randNumb = [9, 8, 7, 6, 100, -30, -22, -91, -87, 45, 102, 405];
+console.log(
+  randNumb.sort((x, y) => {
+    if (x > y) {
+      return -1;
+    } else {
+      return 1;
+    }
+  })
+); //sorting numbers in descending order
+console.log(
+  randNumb.sort((x, y) => {
+    if (x > y) {
+      return 1;
+    } else {
+      return -1;
+    }
+  })
+); //sorting numbers in ascending order
+
+/*********************** Creating & Filling Arrays *******************************/
+let instArr = [1, 2, 3, 4, 5];
+const myArr = new Array(7);
+console.log(myArr.fill(1));
+instArr.fill(25, 3, 5);
+console.log(instArr);
+
+let genArr = Array.from({ length: 7 }, (_, i) => 1 + i);
+console.log(genArr);
