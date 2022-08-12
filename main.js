@@ -1104,13 +1104,12 @@ var newArr = [1, 2, 3, 4, 5];
 console.log(newArr.findIndex((arr) => arr === 5));
 
 /*********************** Flat and FlatMap *******************************/
-
 var deepArr = [[1, 2, 3], [4, 5, 6], 7, 8, [9]];
-console.log(deepArr.flat());
+console.log(deepArr.flat()); //Output: [1,2,3,4,5,6,7,8,9]
 
 var hugeArr = [testDataI, testDataII];
 const overallFigure = hugeArr.flat().reduce((acc, curr) => acc + curr, 0);
-console.log(overallFigure);
+console.log(overallFigure); //Output: 86
 
 /*********************** Sorting Arrays *******************************/
 
@@ -1147,5 +1146,178 @@ console.log(myArr.fill(1));
 instArr.fill(25, 3, 5);
 console.log(instArr);
 
-let genArr = Array.from({ length: 7 }, (_, i) => 1 + i);
-console.log(genArr);
+let randArrs = Array.from({ length: 15 }, (curr, i) => 1 + i);
+console.log(randArrs); //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+var myTransacs = [
+  1000,
+  600,
+  -300,
+  -3300,
+  74633,
+  2882,
+  1200,
+  300,
+  5340,
+  2300,
+  -21310,
+  [1000, -2000, 3000, 4000, 5000, -4100],
+];
+
+/*********************** Using reduce method to get the length of an array rather than using the .length property *******************************/
+
+// var finDisp = myTransacs.flat().filter((trans) => trans >= 5000);
+//   .reduce((acc, curr) => acc + curr, 0);
+
+// var finDisp = myTransacs
+//   .flat()
+//   .reduce((acc, curr) => (curr >= 5000 ? acc + 1 : acc), 0);
+
+var { deposit, withdrawal } = myTransacs.flat().reduce(
+  (acc, curr) => {
+    // curr > 0 ? (acc.deposit += curr) : (acc.withdrawal += curr);
+    // return acc;
+    acc[curr > 0 ? "deposit" : "withdrawal"] += curr;
+    return acc;
+  },
+  { deposit: 0, withdrawal: 0 }
+); //using the reduce method to return an object
+
+// console.log(finDisp);
+console.log(deposit, withdrawal);
+
+var finDisp = myTransacs
+  .flat()
+  .reduce((acc, curr) => (curr > 0 ? acc + curr : acc), 0);
+
+console.log(finDisp);
+
+function titleCase(title) {
+  var exceptions = [
+    "an",
+    "but",
+    "and",
+    "or",
+    "not",
+    "on",
+    "in",
+    "is",
+    "the",
+    "this",
+    "a",
+  ];
+  const capitalized = (str) => str[0].toUpperCase() + str.slice(1);
+  var finRest = title
+    .toLowerCase()
+    .split(" ")
+    .map((arr) => (exceptions.includes(arr) ? arr : capitalized(arr)))
+    .join(" ");
+  return capitalized(finRest);
+}
+console.log(titleCase("this is me learning JAVASCRIPT"));
+console.log(titleCase("and the enemies submitted"));
+console.log(titleCase("and here is another title with an EXAMPLE"));
+// titleCase
+
+/*********************** Coding Challenge 4: Arrays *******************************/
+
+/* 
+Julia and Kate are still studying dogs, and this time they are studying if dogs are eating too much or too little.
+Eating too much means the dog's current food portion is larger than the recommended portion, and eating too little is the opposite.
+Eating an okay amount means the dog's current food portion is within a range 10% above and 10% below the recommended portion (see hint).
+
+1. Loop over the array containing dog objects, and for each dog, calculate the recommended food portion and add it to the object as a new property. Do NOT create a new array, simply loop over the array. Forumla: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
+2. Find Sarah's dog and log to the console whether it's eating too much or too little. HINT: Some dogs have multiple owners, so you first need to find Sarah in the owners array, and so this one is a bit tricky (on purpose) 🤓
+3. Create an array containing all owners of dogs who eat too much ('ownersEatTooMuch') and an array with all owners of dogs who eat too little ('ownersEatTooLittle').
+4. Log a string to the console for each array created in 3., like this: "Matilda and Alice and Bob's dogs eat too much!" and "Sarah and John and Michael's dogs eat too little!"
+5. Log to the console whether there is any dog eating EXACTLY the amount of food that is recommended (just true or false)
+6. Log to the console whether there is any dog eating an OKAY amount of food (just true or false)
+7. Create an array containing the dogs that are eating an OKAY amount of food (try to reuse the condition used in 6.)
+8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+
+HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
+HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
+
+TEST DATA:
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] }
+];
+
+GOOD LUCK 😀
+*/
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
+//1.
+dogs.forEach((dog) => {
+  dog.recommendedFood = Math.ceil(dog.weight ** 0.75 * 28);
+});
+// console.log(dogs);
+
+// 2.
+const sarahObj = dogs.find((dog) => dog.owners.includes("Sarah"));
+
+dogs.forEach(function (obj) {
+  let difference = Math.abs(obj.recommendedFood - obj.curFood);
+  let differencePercentage = (difference / obj.recommendedFood) * 100;
+  obj.difference = difference;
+  obj.differencePercentage = +differencePercentage.toFixed(0);
+});
+console.log(dogs);
+sarahObj.differencePercentage > 10
+  ? console.log("This dog eats more than recommended")
+  : console.log("This dog is eating within recommended range");
+
+// 3.
+
+let ownersEatTooMuch = [];
+let ownersEatTooLittle = [];
+dogs.forEach((dog) => {
+  dog.differencePercentage > 10
+    ? ownersEatTooMuch.push(...dog.owners)
+    : ownersEatTooLittle.push(...dog.owners);
+});
+
+// 4.
+console.log(ownersEatTooMuch.flat().join(" and ") + " dogs eat too much!");
+console.log("**************");
+console.log(ownersEatTooLittle.join(" and ") + " dog eats little!");
+
+// 5.
+const exactFood = dogs.some((dog) => dog.recommendedFood === dog.curFood);
+console.log(exactFood);
+
+// 6.
+// const okayFood = dogs.some((dog) => dog.differencePercentage <= 10);
+const okayFood = (dog) =>
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1;
+console.log(dogs.some(okayFood));
+
+// 7.
+/* var arrOkayFood = [];
+dogs.forEach((dog) => {
+  dog.curFood > dog.recommendedFood * 0.9 &&
+  dog.curFood < dog.recommendedFood * 1.1
+    ? arrOkayFood.push(dog)
+    : arrOkayFood.push();
+});
+console.log(arrOkayFood);
+*/ //Init code
+
+// Optimized code
+console.log(dogs.filter(okayFood));
+
+// // 8.
+var dogsCopy = dogs
+  .slice()
+  .sort((a, b) => a.recommendedFood - b.recommendedFood);
+
+console.log(dogsCopy);
