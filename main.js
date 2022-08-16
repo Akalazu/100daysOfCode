@@ -1206,7 +1206,9 @@ function titleCase(title) {
     "this",
     "a",
   ];
+
   const capitalized = (str) => str[0].toUpperCase() + str.slice(1);
+
   var finRest = title
     .toLowerCase()
     .split(" ")
@@ -1214,6 +1216,7 @@ function titleCase(title) {
     .join(" ");
   return capitalized(finRest);
 }
+
 console.log(titleCase("this is me learning JAVASCRIPT"));
 console.log(titleCase("and the enemies submitted"));
 console.log(titleCase("and here is another title with an EXAMPLE"));
@@ -1321,3 +1324,129 @@ var dogsCopy = dogs
   .sort((a, b) => a.recommendedFood - b.recommendedFood);
 
 console.log(dogsCopy);
+
+/*********************** Section 12: Numbers, Dates, Intl and Timers *******************************/
+console.log(23 === 23.0);
+console.log(0.1 + 0.2);
+
+//ParseInt and ParseFloat
+console.log(Number("23"));
+console.log(Number.parseFloat("2.3%"));
+console.log(Number.parseInt("2.3#"));
+console.log(Number.parseInt("13px"));
+
+// isNaN and isFinite method Of Numbers
+/*
+1. isFinite checks if a value/Argument is a number or negative infinity or positive infinity
+
+2. isNaN checks if an argument passed is a NaN or not
+
+3. Using IsFinite is a better practice for checking if a value is a number compared to isNaN. Know this and know peace! ✌
+*/
+
+console.log(Number.isNaN(23 / 0));
+console.log(23 / 0);
+// console.log(Number.isNaN(Number.parseFloat("2.3X")));
+
+// console.log(isFinite(23 / 0));
+// console.log(isFinite(+"23"));
+// console.log(isFinite(+"23p"));
+// console.log(isFinite(Number.parseFloat("2.3X")));
+
+console.log(isNaN("Infinity"));
+console.log(isNaN("infinity"));
+console.log(Number.isInteger(23));
+
+/*********************** Math and Rounding *******************************/
+// what is type coersion
+
+// sqrt, min, max
+// console.log(Math.sqrt(2));
+// console.log(2 ** (1 / 3));
+// console.log(1.2599210498948732 ** 3);
+// console.log(Math.pow(2, 3));
+// console.log(Math.max(12, 11, 10, 9, Number.parseFloat("50px"), false));
+// console.log(Math.max(0, true));
+// console.log(Math.min(30, false));
+
+// console.log(Math.PI * Number.parseFloat("34px") ** 2);
+
+/*
+
+  toFixed ===> decimal point
+  toPrecision ===> significant figures
+
+  // var floatNum = Math.PI;
+  // console.log(floatNum.toFixed(2));
+  // console.log(floatNum.toPrecision(3));
+*/
+
+// console.log(Math.floor(Math.random() * 6) + 1);
+
+// const randInt = (min, max) => Math.trunc(Math.random() * (max - min) + 1) + min;
+
+// console.log(randInt(1, 30));
+// console.log(randInt(20, 30));
+
+// console.log("*****************");
+
+// console.log(Math.trunc(23.5));
+// console.log(Math.trunc(-23.5));
+// console.log("************** 0");
+
+// console.log(Math.round(23.51));
+// console.log(Math.round(23.9));
+// console.log(Math.round(-24.9));
+// console.log("************** 1");
+// console.log(Math.ceil(21.9));
+// console.log(Math.ceil(0));
+// console.log(Math.ceil(-22.1));
+// console.log("************** 2");
+// console.log(Math.floor("28.1"));
+// console.log(Math.floor("28.9"));
+// console.log(Math.floor("-24.9"));
+
+// Creating Dates
+/*
+console.log(new Date());
+
+console.log(new Date("August 23, 2000"));
+
+console.log(new Date("July 21, 2003"));
+
+console.log(new Date(2003, 7, 21, 15, 11, 6));
+console.log(new Date(2037, 0, 19, 15, 23, 5));
+console.log(new Date(2022, 8, 31));
+console.log("******************************");
+console.log(new Date(0));
+console.log(new Date(1 * 24 * 60 * 60 * 1000));
+console.log(new Date(2 * 24 * 60 * 60 * 1000));
+*/
+// Working with dates
+
+const theFuture = new Date(2042, 6, 21, 15, 11);
+console.log(theFuture);
+console.log(theFuture.getFullYear());
+console.log(theFuture.getMonth());
+console.log(theFuture.getDate());
+console.log(theFuture.getDay());
+console.log(theFuture.toDateString()); //get only the date as a string
+console.log(theFuture.toISOString());
+console.log(theFuture.getTime()); //how many milliseconds has past since Jan 01, 1970 till 'theFuture' date which is Mon Jul 21 2042
+console.log(new Date(2289564660000)); //convert the milliseconds back to date. They are called 'Time Stamp'
+
+console.log(Date.now()); // gives the 'Time Stamp of the current date and period in time'
+
+// theFuture.setFullYear(2019);
+console.log(+theFuture);
+
+const calcDaysPassed = (day1, day2) => {
+  return Math.abs((day2 - day1) / (1000 * 60 * 60 * 24));
+};
+const today = new Date("August 14, 2022");
+const yesterday = new Date(2022, 7, 23);
+console.log(today.toDateString());
+console.log(yesterday.toDateString());
+console.log(calcDaysPassed(yesterday, today));
+
+var aNum = "12";
