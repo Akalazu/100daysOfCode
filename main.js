@@ -1214,6 +1214,7 @@ function titleCase(title) {
     .split(" ")
     .map((arr) => (exceptions.includes(arr) ? arr : capitalized(arr)))
     .join(" ");
+
   return capitalized(finRest);
 }
 
@@ -1449,4 +1450,17 @@ console.log(today.toDateString());
 console.log(yesterday.toDateString());
 console.log(calcDaysPassed(yesterday, today));
 
-var aNum = "12";
+var aNum = "12";   
+
+let myObj = {
+  fullname: "Code Burster",
+  age: 32,
+};
+
+let myobject = JSON.stringify(myObj);
+
+console.log(myobject);
+
+localStorage.setItem("objectA", myObj);
+console.log(localStorage);
+l
