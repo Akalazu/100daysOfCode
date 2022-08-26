@@ -1,0 +1,137 @@
+{
+    "questions": [
+      {
+        "questionText": "Which of the following represents margin-right in bootstrap?",
+        "options": [
+          {
+            "text": "me-auto",
+            "correct": true
+          },
+          {
+            "text": "ml-auto"
+          },
+          {
+            "text": "margin-left-auto"
+          },
+          {
+            "text": "ms-auto"
+          }
+        ],
+        "explanation": "//////////////"
+      },
+      {
+        "questionText": "Can we define the direction of the text via a CSS property?",
+        "options": [
+          {
+            "text": "Maybe"
+          },
+          {
+            "text": "No, it's not possible"
+          },
+          {
+            "text": "Only with help of javascript"
+          },
+          {
+            "text": "Yes it's possible",
+            "correct": true
+          }
+        ],
+        "explanation": "///////////////"
+      },
+      {
+        "questionText": " If we want to place text around an image, which CSS property should we use?",
+        "options": [
+          {
+            "text": "push."
+          },
+          {
+            "text": "Float.",
+            "correct": true
+          },
+          {
+            "text": "Align."
+          },
+          {
+            "text": "Wrap."
+          }
+        ],
+        "explanation": "//////////////"
+      },
+      {
+        "questionText": "An HTML document can contain _____?",
+        "options": [
+          {
+            "text": "Attributes"
+          },
+          {
+            "text": "All the answers are true",
+            "correct": true
+          },
+          {
+            "text": "Tags"
+          },
+          {
+            "text": "Raw text"
+          }
+        ],
+        "explanation": "///////////////"
+      },
+      {
+        "questionText": "How to make all paragraphs “RED”?",
+        "options": [
+          {
+            "text": "p.all {color: red;}"
+          },
+          {
+            "text": "p.all {color: #AA0000;}"
+          },
+          {
+            "text": "all.p {color: #0000FF;}"
+          },
+          {
+            "text": "p {color: red;}",
+            "correct": true
+          }
+        ],
+        "explanation": "/////////////////////"
+      },
+      {
+        "questionText": "The default value for the 'position' attribute is _________.",
+        "options": [
+          {
+            "text": "Inherit"
+          },
+          {
+            "text": "Relative",
+            "correct": true
+          },
+          {
+            "text": "Fixed"
+          },
+          {
+            "text": "Static"
+          }
+        ],
+        "explanation": "/////////////////////"
+      },
+      {
+        "questionText": "Which is an following is not used in CSS as a 'MEASUREMENT UNIT'?",
+        "options": [
+          {
+            "text": "vm",
+            "correct": true
+          },
+          {
+            "text": "fr"
+          },
+          {
+            "text": "vw"
+          },
+          {
+            "text": "em"
+          }
+        ],
+        "explanation": "/////////////////////"
+      }
+    ]
+}

@@ -55,18 +55,18 @@ const arr2 = [5, 10, 15, 20];
 
 let friends = ["Joe", "Stones", "Vincent"];
 let periodOfTheDay = ["morning", "afternoon", "evening"];
-var numb = Symbol("66");
-console.log(typeof numb);
-const person = {
-  fullName: "John Smith",
-  age: 12,
-  friends,
-  [numb]: 404,
-  job: "Waiter",
-  orderMenu: function (param) {
-    return `Waiter ${this.fullName} was called to bring ${param}`;
-  },
-};
+// var numb = Symbol("66");
+// console.log(typeof numb);
+// const person = {
+//   fullName: "John Smith",
+//   age: 12,
+//   friends,
+//   [numb]: 404,
+//   job: "Waiter",
+//   orderMenu: function (param) {
+//     return `Waiter ${this.fullName} was called to bring ${param}`;
+//   },
+// };
 const person2 = {
   fullName2: "Adam Williams",
   age2: 20,
@@ -126,12 +126,12 @@ if (undefined) {
   console.log(false);
 } //check if undefined is truthy || falsy value[output: false]
 
-person && person.orderMenu();
+// person && person.orderMenu();
 console.log(true && false); //false
 console.log("" && false); // ""
 
-var randVar = person.position || 100;
-console.log(randVar);
+// var randVar = person.position || 100;
+// console.log(randVar);
 
 /*********************** NULLISH COALESCIAN OPERATOR [ ?? ] *******************************/
 
@@ -141,30 +141,30 @@ console.log(null ?? true); //true
 console.log(null ?? false); //false
 console.log(undefined ?? null); //null
 
-person.position = 0;
-var randVar = person.position ?? 100;
-console.log(randVar); //0
+// person.position = 0;
+// var randVar = person.position ?? 100;
+// console.log(randVar); //0
 
 /*********************** LOGICAL ASSIGNMENT OPERATORS*******************************/
 
-person.children = person.children ?? 2;
-console.log(person.children); //2
-person.children = 0;
-person.children ??= 2;
-console.log(person.children); //0
+// person.children = person.children ?? 2;
+// console.log(person.children); //2
+// person.children = 0;
+// person.children ??= 2;
+// console.log(person.children); //0
 
-person.gender = person.gender || "male";
-console.log(person.gender); //male
-delete person.gender;
-person.gender ||= "female";
-console.log(person.gender); //female
+// person.gender = person.gender || "male";
+// console.log(person.gender); //male
+// delete person.gender;
+// person.gender ||= "female";
+// console.log(person.gender); //female
 
-person.hobby =
-  person.hobby && "[coding, playing video games, solving maths problems]";
-console.log(person.hobby); //undefined
-person.hobby = "watching cartoons";
-person.hobby &&= "[coding, playing video games, solving maths problems]";
-console.log(person.hobby); //[coding, playing video games, solving maths problems]
+// person.hobby =
+//   person.hobby && "[coding, playing video games, solving maths problems]";
+// console.log(person.hobby); //undefined
+// person.hobby = "watching cartoons";
+// person.hobby &&= "[coding, playing video games, solving maths problems]";
+// console.log(person.hobby); //[coding, playing video games, solving maths problems]
 
 /*********************** FOR OF LOOP also the use of Object.entries() *******************************/
 // let personArr = Object.entries(person2);
@@ -295,24 +295,24 @@ console.log(temp);
 
 console.log(daysOfTheWeek[0]?.month ?? "First value of array doesn't exist");
 // person.orderMenu?.() ?? console.log('object');
-console.log(person.orderMenu?.("pasta") ?? "Object");
+// console.log(person.orderMenu?.("pasta") ?? "Object");
 
 /*********************** OBJECT DATA KEYS, VALUES AND ENTRIES*******************************/
 
 //keys
-let keys = Object.keys(person);
+// let keys = Object.keys(person);
 // console.log(keys); [0: "fullName","age","friends", "job", "orderMenu","position", "children", "gender", "hobby"]
-console.log(Object.keys(person).length); //9
+// console.log(Object.keys(person).length); //9
 
 //values
-console.log(Object.values(person).length); //9
+// console.log(Object.values(person).length); //9
 
 //entries
-let entries = Object.entries(person);
-console.log(entries); //Turning an array to an Object
-console.log(...entries.entries()); //nested array with index
-for (const [index, [key, value]] of entries.entries())
-  console.log(index, key, value); //looping over an object
+// let entries = Object.entries(person);
+// console.log(entries); //Turning an array to an Object
+// console.log(...entries.entries()); //nested array with index
+// for (const [index, [key, value]] of entries.entries())
+// console.log(index, key, value); //looping over an object
 
 console.log(...daysOfTheWeek);
 console.log("mon", "tue", "wed", "thur", "fri", "sat", "sun");
@@ -414,7 +414,7 @@ myMap.set("fullname", "Slevester Leon");
 const isAbsent = true;
 console.log(`Report on ${myMap.get("fullname")}: ${myMap.get(isAbsent)}`);
 
-myMap.set(person, "Object");
+// myMap.set(person, "Object");
 myMap.set(daysOfTheWeek, "Array");
 console.log(myMap.keys());
 console.log(myMap.values());
@@ -1450,7 +1450,7 @@ console.log(today.toDateString());
 console.log(yesterday.toDateString());
 console.log(calcDaysPassed(yesterday, today));
 
-var aNum = "12";   
+var aNum = "12";
 
 let myObj = {
   fullname: "Code Burster",
@@ -1463,4 +1463,127 @@ console.log(myobject);
 
 localStorage.setItem("objectA", myObj);
 console.log(localStorage);
-l
+
+// Numeric Separators
+var diameter = 312_400_000_000;
+console.log(diameter);
+
+console.log(diameter.toLocaleString());
+var price = 35_42;
+console.log(price);
+
+var PI = 3.14_1;
+console.log(PI);
+
+// working with BIGINT
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(BigInt(true));
+console.log(BigInt(123456789123456789));
+console.log(typeof 123456789123456789n);
+
+// Operations with bigint
+var bigint1 = BigInt(1234567899);
+var bigint2 = BigInt(9876543211);
+var bigint3 = 5678912344n;
+
+console.log(bigint1 + bigint2);
+console.log(bigint2 * bigint1);
+// console.log(bigint3 + 1000);
+console.log(30n == 20);
+console.log(20n > 15);
+console.log(17n / 3n);
+// console.log(Math.sqrt(16n));
+console.log(`${bigint1} is a huge number`);
+
+/*********************** Internationalizing Numbers[int'l] on dates *******************************/
+
+const date = document.querySelector(".initialdate");
+date.innerHTML = "Todays date!";
+var nownow = new Date();
+const optionss = {
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  weekday: "long",
+  dayPeriod: "short",
+};
+date.textContent = Intl.DateTimeFormat("en-US", optionss).format(nownow);
+
+// const locale = navigator.language;
+// console.log(locale);
+// const now = new Date();
+// const options = {
+//   hour: "numeric",
+//   minute: "numeric",
+//   second: "numeric",
+//   day: "numeric",
+//   month: "short",
+//   year: "numeric",
+//   weekday: "long",
+// };
+// date.textContent = new Intl.DateTimeFormat(locale).format(now);
+
+/*********************** Internationalizing Numbers[int'l] on numbers *******************************/
+
+// const options = {
+//   // style: "unit",
+//   // unit: "meter-per-second",
+//   // style: "percent",
+//   style: "currency",
+//   currency: "ngn",
+//   // useGrouping: false
+// };
+
+// const numb = 123456789.123;
+// const numbFormat = new Intl.NumberFormat(navigator.language, options).format(
+//   numb
+// );
+// console.log(numbFormat);
+
+// var number1 = 2312345678945.23;
+// console.log(navigator.language);
+
+// const variety = {
+//   // style: "unit",
+//   // unit: "meter-per-second",
+//   // style: "percent",
+//   style: "currency",
+//   currency: "EUR",
+// };
+// console.log(Intl.NumberFormat(navigator.language, variety).format(number1));
+
+/*********************** Settimeout() and Setinterval() *******************************/
+
+var ing = ["olives", "cheese"];
+var pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`Pizza is Here!🍕😉 with ${ing1} and ${ing2}`),
+  3000,
+  ...ing
+);
+console.log("Waiting...");
+
+if (ing.includes("cheese")) {
+  clearTimeout(pizzaTimer);
+}
+
+// setInterval(() => {
+//   const date = new Date();
+//   console.log(date);
+// }, 1000);
+
+let timeLeft = 60;
+
+let timer = setInterval(() => {
+  let min = String(Math.trunc(timeLeft / 60)).padStart(2, 0);
+  let sec = String(timeLeft % 60).padStart(2, 0);
+  console.log(`${min}:${sec}`);
+  timeLeft--;
+  if (timeLeft === 0) {
+    console.log("Time Out");
+    clearInterval(timer);
+  }
+}, 1000);
